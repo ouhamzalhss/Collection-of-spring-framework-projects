@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context" xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd         http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+    
+    <context:property-placeholder location="classpath:sport.properties"/>
+    
+    <bean id="fourniture" class="com.ouhamza.demo.HappyFornitureService"></bean>
+    
+	<bean id="Mycoach" class="com.ouhamza.demo.BascketCoach">
+	       <constructor-arg ref="fourniture"></constructor-arg>
+	</bean> 
+	
+	<bean id="foot" class="com.ouhamza.demo.FootCoach">
+		<property name="fournitureService" ref="fourniture"></property>
+		<property name="email" value="${foo.message}"></property>
+	</bean> 
+
+   
+   <bean id="myLoggerConfig" class="com.ouhamza.demo.MyLoggerConfig" init-method="initLogger">
+    	<property name="rootLoggerLevel" value="FINE" />
+    	<property name="printedLoggerLevel" value="FINE"/>
+    </bean>
+        
+</beans>
